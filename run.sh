@@ -1,0 +1,1 @@
+FLASK_APP=data_visualization_project/app.py flask run
