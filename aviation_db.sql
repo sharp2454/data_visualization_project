@@ -1,0 +1,18 @@
+create table aviation_data(
+ACCIDENT_NUMBER varchar,
+EVENT_DATE date,
+CITY Varchar,
+STATE Varchar,
+LATITUDE FLOAT,
+LONGITUDE FLOAT,
+INJURY_SEVERITY Varchar,
+AIRCRAFT_DAMAGE Varchar,
+AIRCRAFT_CATEGORY Varchar,
+MAKE Varchar,
+MODEL Varchar,
+TOTAL_FATAL_INJURIES INT,
+TOAL_INJURIES INT,
+TOTAL_UNINJURED INT
+);
+
+select * from aviation_data
