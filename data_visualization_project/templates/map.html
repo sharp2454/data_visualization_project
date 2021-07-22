@@ -20,42 +20,33 @@
         <div class="navbar">
             <a class="active" href="/">Home</a>
             <a href="/report">Report</a>
-
-            <div class="dropdown">
-                <button class="dropbtn">MAP_Dropdown
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-content">
-                    <a href="/map/2021">2021</a>
-                    <a href="2000">2000</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </div>
-
-            <a href="/charts">Charts</a>
+            <a href="#about">About</a>
         </div>
+
+        <input type="hidden" id="year_id" value="{{ year }}">
 
         <table>
             <tr>
                 <td>
-                    <img src="/static/Images/Plane.jpg" alt="" id="description-image" width="850" height="500">
+                    <a href="/map/2021">2021</a>
                 </td>
-                <td style="vertical-align:top">
-                    <h1 class="description-header">Overview</h1>
-                    <p>The purpose of this project was to analyze the NTSB aviation accident dataset for the United
-                        States,
-                        its territories, and possessions from January 1, 2019 to Feb 2021
-                        and determine if all aviation accidents result in fatalities.</p>
-                    <p>After assembling the dataset, we used Leaflet to plot and provide more details about the
-                        accidents.
-                        Details we looked at included: accident number, date of accident, city, state, injury severity,
-                        number of injured,
-                        type of aircraft, and make of aircraft.</p>
+                <td>
+                    <a href="/map/2020">2020</a>
+                </td>
+                <td>
+                    <a href="/map/2019">2019</a>
+                </td>
+                <td>
+                    <a href="/map/2018">2018</a>
+                </td>
+                <td>
+                    <a href="/map/2017">2017</a>
                 </td>
             </tr>
-
         </table>
+        <br>
 
+        <div id='map'></div>
 
         <!-- Leaflet JS -->
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
