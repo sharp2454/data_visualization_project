@@ -45,6 +45,13 @@ def charts():
 def report():
     return render_template("report.html")
 
+@app.route("/map")
+def map2():
+    return render_template("index.html")
+
+@app.route("/mapcopy/<year>")
+def mapcopy(year=None):
+    return render_template("map copy.html", year=year)
 
 @app.route("/map/<year>")
 def map(year=None):
