@@ -4,11 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="boxstyle.css">
-    <script defer src ="boxscript.js"></script>
+    <link rel="stylesheet" href="/static/css/boxstyle.css">
+    <script defer src ="/static/js/boxscript.js"></script>
     <title>Lightbox</title>
 </head>
 <body>
+    <div class="navbar">
+        <a class="active" href="/">Home</a>
+        <a href="/report">Report</a>
+
+        <div class="dropdown">
+            <button class="dropbtn">MAP_Dropdown
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="/map/2021">2021</a>
+                <a href="/map/2020">2020</a>
+                <a href="/map/2019">2019</a>
+                <a href="/map/2018">2018</a>
+                <a href="/map/2017">2017</a>
+            </div>
+        </div>
+
+        <a href="#images">Images</a>
+        <a href="#chart">Injuries</a>
+
+    </div>
+
+
+
+
+
     <div class="grid">
         <img src="https://source.unsplash.com/400x400?airplane">
         <img src="https://source.unsplash.com/400x400?helicopter">
@@ -19,8 +45,6 @@
         <img src="https://source.unsplash.com/400x400?parachute">
         <img src="https://source.unsplash.com/400x400?rocket">
         <img src="https://source.unsplash.com/400x400?boeing737">
-        
-
     </div>
 
 </body>

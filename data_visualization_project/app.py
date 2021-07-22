@@ -31,22 +31,24 @@ Aviation = Base.classes.aviation_data
 
 @app.route("/")
 def welcome():
-    # mars_record = mongo.db.mars.find_one()
-    # print(mars_record)
-    return render_template("welcomepage.html")
+    return render_template("welcomepage.html") ##landing page
 
 
 @app.route("/charts")
 def charts():
-    return render_template("charts.html")
+    return render_template("charts.html") ##kiara chart
 
 
 @app.route("/report")
 def report():
-    return render_template("report.html")
+    return render_template("report.html") ##drop down w/ map
+
+@app.route("/images")
+def images():
+    return render_template("imagebox.html")  ##lightbox js  
 
 
-@app.route("/map/<year>")
+@app.route("/map/<year>") ##map w/ years & markers
 def map(year=None):
     print(f"year= {year}")
     return render_template("map.html", year=year)
@@ -56,7 +58,9 @@ def map(year=None):
 def aviation_report():
     session = Session(engine)
 
-    results = session.query(Aviation.accident_number).all()
+    results = session.query(Aviation.accident_number, Aviation.event_date, Aviation.city, Aviation.state,
+    Aviation.latitude, Aviation.longitude, Aviation.injury_severity, Aviation.aircraft_damage, Aviation.aircraft_category,
+    Aviation.make, Aviation.model, Aviation.total_fatal_injuries).all()
     
     aviation_data = [r._asdict() for r in results]
 
@@ -67,7 +71,7 @@ def aviation_report():
 def aviation_matt():
     session = Session(engine)
 
-    results = session.query(Aviation.accident_number, Aviation.event_date).all()
+    res = session.query(Aviation.accident_number, Aviation.event_date).all()
     
     aviation_data = [r._asdict() for r in results]
 

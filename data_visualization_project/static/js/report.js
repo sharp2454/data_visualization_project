@@ -25,8 +25,9 @@ function buildMetadata(selection) {
     console.log(selection);
 
     // Read the json data
-    d3.json("/static/data/aviation2019.json").then((sampleData) => {
-
+    // /api/aviation
+    d3.json("/api/report").then((sampleData) => {
+        console.log(sampleData);
         //filter & parse data to return sample data
         var parsedData = sampleData;
         var sample = parsedData.filter(accident => accident.ACCIDENT_NUMBER == selection);
@@ -36,7 +37,7 @@ function buildMetadata(selection) {
         // //update metadata location
         var metadata = d3.select("#sample-metadata").html("");
 
-        var exceptions = ["TOTAL_INJURIES", "TOTAL_UNINJURED"];
+        var exceptions = ["TOTAL_INJURIES", "TOTAL_UNINJURED", "YEAR"];
 
         Object.entries(sample[0]).forEach(([key, value]) => {
             // if(key !== "LATITUDE")
@@ -64,7 +65,7 @@ function buildMap(selection) {
 
     // "LATITUDE", "LONGITUDE",
     //read json data
-    d3.json("/static/data/aviation2019.json").then((accidentData) => {
+    d3.json("/api/report").then((accidentData) => {
         console.log("accidentData");
         console.log(accidentData);
 
