@@ -73,7 +73,7 @@ d3.csv("static/data/aviation2019.csv").then(function(response)  {
   
 
 var planeIcon = L.icon({
-  iconUrl: "images/planes.png",
+  iconUrl: "static/images/planes.png",
   iconSize: [25, 25],
 
 })
