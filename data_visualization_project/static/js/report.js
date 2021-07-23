@@ -30,7 +30,7 @@ function buildMetadata(selection) {
         console.log(sampleData);
         //filter & parse data to return sample data
         var parsedData = sampleData;
-        var sample = parsedData.filter(accident => accident.ACCIDENT_NUMBER == selection);
+        var sample = parsedData.filter(accident => accident.accident_number == selection);
         console.log("sample");
         console.log(sample);
 
@@ -46,11 +46,11 @@ function buildMetadata(selection) {
                 console.log(value);
                 metadata.append("p").text(`${key}: ${value}`);
 
-                if (key == "LATITUDE") {
+                if (key == "latitude") {
                     lati = `${value}`;
                 }
 
-                if (key == "LONGITUDE") {
+                if (key == "longitude") {
                     long = `${value}`;
                 }
             }
@@ -69,11 +69,15 @@ function buildMap(selection) {
         console.log("accidentData");
         console.log(accidentData);
 
-        var sample = accidentData.filter(accident => accident.ACCIDENT_NUMBER == selection);
-        console.log("sample[0].LATITUDE");
-        console.log(sample[0].LATITUDE);
+        var sample = accidentData.filter(accident => accident.accident_number == selection);
 
-        var location = [sample[0].LATITUDE, sample[0].LONGITUDE];
+        console.log(accidentData);
+        console.log(sample);
+
+        console.log("sample[0].LATITUDE");
+        console.log(sample[0].latitude);
+
+        var location = [sample[0].latitude, sample[0].longitude];
 
         // Remove the previous marker
         if (marker !== null) {
@@ -82,7 +86,7 @@ function buildMap(selection) {
 
         marker = L.marker(location).addTo(myMap);
 
-        marker.bindPopup("<h2>" + sample[0].CITY + "<h2><hr><h3>Fatalities: + " + sample[0].TOTAL_FATALITIES + "</h3>").addTo(myMap);
+        marker.bindPopup("<h2>" + sample[0].city + "<h2><hr><h3>Fatalities: + " + sample[0].total_fatalities + "</h3>").addTo(myMap);
 
         marker.on('mouseover', function (e) {
             this.openPopup();

@@ -46,7 +46,7 @@ def report():
 @app.route("/images")
 def images():
     return render_template("imagebox.html")  ##lightbox js  
-    
+
 @app.route("/map")
 def map2():
     return render_template("index.html")
@@ -66,7 +66,7 @@ def map(year=None):
 def aviation_report():
     session = Session(engine)
 
-    results = session.query(Aviation.accident_number, Aviation.event_date, Aviation.city, Aviation.state,
+    results = session.query(Aviation.accident_number, Aviation.event_date, Aviation.year, Aviation.city, Aviation.state,
     Aviation.latitude, Aviation.longitude, Aviation.injury_severity, Aviation.aircraft_damage, Aviation.aircraft_category,
     Aviation.make, Aviation.model, Aviation.total_fatal_injuries).all()
     

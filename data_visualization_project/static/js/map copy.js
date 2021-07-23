@@ -78,13 +78,13 @@ d3.json("/api/report").then((accidentData) => {
     console.log("accidentData");
     console.log(accidentData);
 
-    var filtered = accidentData.filter(accident => accident.year == year_id);
+    var filtered = accidentData.filter(accident => parseInt(accident.year) === parseInt(year_id));
     console.log("filtered");
     console.log(filtered);
 
     var planeIcon = L.icon({
-        iconUrl: "static/images/planes.png",
-        iconSize: [25, 25],
+        iconUrl: "../static/images/planes.png",
+        iconSize: [25, 25]
       
       })
       
@@ -95,7 +95,7 @@ d3.json("/api/report").then((accidentData) => {
         var incident = filtered[index];
       
         
-        aircraft_type = incident['AIRCRAFT_CATEGORY']
+        aircraft_type = incident['aircraft_category']; //AIRCRAFT_CATEGORY']
         //console.log(incident)
         //console.log(response)
         if (aircraft_type === "AIRPLANE") {
@@ -141,13 +141,19 @@ d3.json("/api/report").then((accidentData) => {
           var aircraft_layer = ['Weight_Shift']
         }
         
-        
-        var incidentMarker = L.marker([incident.LATITUDE, incident.LONGITUDE],{icon: planeIcon})//.addTo(myMap);
+       
+        console.log(incident);
+        var incidentMarker = L.marker([incident.latitude, incident.longitude],{icon: planeIcon} ).addTo(myMap);
+       // var incidentMarker = L.marker([incident.latitude, incident.longitude]).addTo(myMap);
         incidentMarker.addTo(layers[aircraft_layer]);
       
-        incidentMarker.bindPopup("Date: " + incident.EVENT_DATE + "<br>Accident Number: " + incident.ACCIDENT_NUMBER + "<br>Aircraft: " + incident.AIRCRAFT_CATEGORY + "<br>City: " + incident.CITY + "<br>State: " + incident.STATE + "<br>Total Fatalities: " + incident.TOTAL_FATALITIES + "<br>Total Injuries: " + incident.TOTAL_INJURIES + "<br>Total Uninjured: " + incident.TOTAL_UNINJURED).openPopup;
+        incidentMarker.bindPopup("Date: " + incident.event_date + "<br>Accident Number: " + incident.accident_number + "<br>Aircraft: " + incident.aircraft_category + "<br>City: " + incident.city + "<br>State: " + incident.state + "<br>Total Fatalities: " + incident.total_fatalities + "<br>Total Injuries: " + incident.total_injuries + "<br>Total Uninjured: " + incident.total_uninjured).openPopup;
       
       }
+
+
+      //PIE CHART
+
 
     filtered.forEach((row) => {
 
