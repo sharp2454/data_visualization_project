@@ -143,7 +143,8 @@ d3.json("/api/report").then((accidentData) => {
         
        
         console.log(incident);
-        var incidentMarker = L.marker([incident.latitude, incident.longitude],{icon: planeIcon} ).addTo(myMap);
+        
+        var incidentMarker = L.marker([incident.latitude, incident.longitude],{icon: planeIcon} )
        // var incidentMarker = L.marker([incident.latitude, incident.longitude]).addTo(myMap);
         incidentMarker.addTo(layers[aircraft_layer]);
       
