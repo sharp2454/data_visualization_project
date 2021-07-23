@@ -1,4 +1,4 @@
-console.log("Map")
+// console.log("Map")
 
 var year_id = d3.select("#year_id").property("value");
 
@@ -6,8 +6,8 @@ function yearValue(y) {
     year_id = y;
 }
 
-console.log("year");
-console.log(year_id);
+// console.log("year");
+// console.log(year_id);
 
 lati = 0;
 long = 0;
@@ -75,21 +75,24 @@ var Weight_Shift = []
   
 
 d3.json("/api/report").then((accidentData) => {
-    console.log("accidentData");
-    console.log(accidentData);
+    // console.log("accidentData");
+    // console.log(accidentData);
 
     var filtered = accidentData.filter(accident => parseInt(accident.year) === parseInt(year_id));
-    console.log("filtered");
-    console.log(filtered);
+    // console.log("filtered");
+    // console.log(filtered);
 
+    
     var planeIcon = L.icon({
-        iconUrl: "../static/images/planes.png",
+        iconUrl: "/static/images/planes.png",
         iconSize: [25, 25]
       
       })
+      var planeIcon2 = L.icon({
+        iconUrl: "/static/images/Planes2.png",
+        iconSize: [25, 25]
       
-      //var incidents = response;
-      //var incidentMarkers = [];
+      })
       
       for (var index = 0; index < filtered.length; index++) {
         var incident = filtered[index];
@@ -117,7 +120,7 @@ d3.json("/api/report").then((accidentData) => {
         }
       
         else if (aircraft_type === "GYROPLANE") {
-          Glider.push(incident)
+          Gyroplane.push(incident)
           var aircraft_layer = ['Gyroplane']
         }
       
@@ -140,20 +143,39 @@ d3.json("/api/report").then((accidentData) => {
           Weight_Shift.push(incident)
           var aircraft_layer = ['Weight_Shift']
         }
-        
-       
+        //console.log(incident.latitude)
         console.log(incident);
-        
-        var incidentMarker = L.marker([incident.latitude, incident.longitude],{icon: planeIcon} )
-       // var incidentMarker = L.marker([incident.latitude, incident.longitude]).addTo(myMap);
-        incidentMarker.addTo(layers[aircraft_layer]);
-      
-        incidentMarker.bindPopup("Date: " + incident.event_date + "<br>Accident Number: " + incident.accident_number + "<br>Aircraft: " + incident.aircraft_category + "<br>City: " + incident.city + "<br>State: " + incident.state + "<br>Total Fatalities: " + incident.total_fatalities + "<br>Total Injuries: " + incident.total_injuries + "<br>Total Uninjured: " + incident.total_uninjured).openPopup;
+        var incidentMarker = '';
+        if (incident.total_fatal_injuries == 0) {
+         incidentMarker = L.marker([incident.latitude, incident.longitude],{icon: planeIcon})//.addTo(myMap);
+        }
+
+      else {
+         incidentMarker = L.marker([incident.latitude, incident.longitude],{icon: planeIcon2})//.addTo(myMap);
+        }
+
+      incidentMarker.addTo(layers[aircraft_layer]);
+      incidentMarker.bindPopup("Date: " + incident.event_date + "<br>Accident Number: " + incident.accident_number + "<br>Aircraft: " + incident.aircraft_category + "<br>City: " + incident.city + "<br>State: " + incident.state + "<br>Total Fatalities: " + incident.total_fatalitie + "<br>Total Injuries: " + incident.total_injuries + "<br>Total Uninjured: " + incident.total_uninjured).openPopup;
+   
       
       }
 
 
       //PIE CHART
+
+      var data = [{
+        values: [Airplane.length, Glider.length, 55],
+        labels: ['Airplane', 'Non-Reidential', 'Utility'],
+        type: 'pie'
+      }];
+      
+      var layout = {
+        height: 400,
+        width: 500
+      };
+      
+      Plotly.newPlot('pie', data, layout);
+
 
 
     filtered.forEach((row) => {

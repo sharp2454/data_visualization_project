@@ -47,20 +47,14 @@ def report():
 def images():
     return render_template("imagebox.html")  ##lightbox js  
 
-@app.route("/map")
-def map2():
-    return render_template("index.html")
-
 @app.route("/mapcopy/<year>")
 def mapcopy(year=None):
-    return render_template("map copy.html", year=year)
-
+    return render_template("map_copy.html", year=year)
 
 @app.route("/map/<year>") ##map w/ years & markers
 def map(year=None):
     print(f"year= {year}")
-    return render_template("map.html", year=year)
-
+    return render_template("map_copy.html", year=year)
 
 @app.route("/api/report")
 def aviation_report():
