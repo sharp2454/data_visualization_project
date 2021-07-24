@@ -37,7 +37,7 @@ function buildMetadata(selection) {
         // //update metadata location
         var metadata = d3.select("#sample-metadata").html("");
 
-        var exceptions = ["TOTAL_INJURIES", "TOTAL_UNINJURED", "YEAR"];
+        var exceptions = ["toal_injuries", "total_fatal_injuries", "total_uninjured", "YEAR"];
 
         Object.entries(sample[0]).forEach(([key, value]) => {
             // if(key !== "LATITUDE")
