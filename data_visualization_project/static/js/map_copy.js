@@ -71,16 +71,14 @@ var Helicopter = []
 var Powered_Parachute= []
 var UltraLight = []
 var Weight_Shift = []
-  
-  
 
 d3.json("/api/report").then((accidentData) => {
     // console.log("accidentData");
     // console.log(accidentData);
 
     var filtered = accidentData.filter(accident => parseInt(accident.year) === parseInt(year_id));
-    // console.log("filtered");
-    // console.log(filtered);
+    console.log("filtered");
+    console.log(filtered);
 
     
     var planeIcon = L.icon({
@@ -96,7 +94,8 @@ d3.json("/api/report").then((accidentData) => {
       
       for (var index = 0; index < filtered.length; index++) {
         var incident = filtered[index];
-      
+        // console.log("incident")
+        // console.log(incident)
         
         aircraft_type = incident['aircraft_category']; //AIRCRAFT_CATEGORY']
         //console.log(incident)
@@ -143,6 +142,7 @@ d3.json("/api/report").then((accidentData) => {
           Weight_Shift.push(incident)
           var aircraft_layer = ['Weight_Shift']
         }
+
         //console.log(incident.latitude)
         console.log(incident);
         var incidentMarker = '';
@@ -155,17 +155,16 @@ d3.json("/api/report").then((accidentData) => {
         }
 
       incidentMarker.addTo(layers[aircraft_layer]);
-      incidentMarker.bindPopup("Date: " + incident.event_date + "<br>Accident Number: " + incident.accident_number + "<br>Aircraft: " + incident.aircraft_category + "<br>City: " + incident.city + "<br>State: " + incident.state + "<br>Total Fatalities: " + incident.total_fatalitie + "<br>Total Injuries: " + incident.total_injuries + "<br>Total Uninjured: " + incident.total_uninjured).openPopup;
-   
-      
+      incidentMarker.bindPopup("Date: " + incident.event_date + "<br>Accident Number: " + incident.accident_number + "<br>Aircraft: " + incident.aircraft_category + "<br>City: " + incident.city + "<br>State: " + incident.state + "<br>Total Fatalities: " + incident.total_fatal_injuries + "<br>Total Injuries: " + incident.total_injuries + "<br>Total Uninjured: " + incident.total_uninjured).openPopup;
+       
       }
 
 
       //PIE CHART
 
       var data = [{
-        values: [Airplane.length, Glider.length, 55],
-        labels: ['Airplane', 'Non-Reidential', 'Utility'],
+        values: [Airplane.length, Glider.length, Balloon.length, Gyroplane.length, Helicopter.length, Powered_Parachute.length, UltraLight.length, Weight_Shift.length],
+        labels: ['Airplane', 'Glider', 'Balloon', 'Gyroplane', 'Helicopter', 'Powered Parachute', 'UltraLight', 'Weight Shift'],
         type: 'pie'
       }];
       
@@ -177,8 +176,39 @@ d3.json("/api/report").then((accidentData) => {
       Plotly.newPlot('pie', data, layout);
 
 
+      //Pie01
+      fatalities = 0;
+      injuries = 0;
+      noninjuries = 0;
 
-    filtered.forEach((row) => {
+      filtered.forEach((row) => {
+        fatalities += row.total_fatal_injuries;
+        injuries += row.toal_injuries;
+        noninjuries += row.total_uninjured;
+      });
+
+      casualties = [fatalities, injuries, noninjuries];
+      console.log("casualties")
+      console.log(casualties)
+
+      var data01 = [{
+        values: casualties,
+        labels: ['fatalities', 'injuries', 'non-injuries'],
+        type: 'pie'
+      }];
+
+      var layout01 = {
+        height: 400,
+        width: 500
+      };
+
+      Plotly.newPlot('pie01', data01, layout01);
+
+});
+
+
+
+    // filtered.forEach((row) => {
 
         // console.log("num");
         // console.log(num);
@@ -195,6 +225,8 @@ d3.json("/api/report").then((accidentData) => {
         //     this.closePopup();
         // });
 
-    })
+    
 
-});
+
+
+

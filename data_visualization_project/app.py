@@ -62,7 +62,7 @@ def aviation_report():
 
     results = session.query(Aviation.accident_number, Aviation.event_date, Aviation.year, Aviation.city, Aviation.state,
     Aviation.latitude, Aviation.longitude, Aviation.injury_severity, Aviation.aircraft_damage, Aviation.aircraft_category,
-    Aviation.make, Aviation.model, Aviation.total_fatal_injuries).all()
+    Aviation.make, Aviation.model, Aviation.total_fatal_injuries, Aviation.total_uninjured, Aviation.toal_injuries).all()
     
     aviation_data = [r._asdict() for r in results]
 
