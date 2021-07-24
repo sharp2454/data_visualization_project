@@ -27,19 +27,30 @@
                 </button>
                 <div class="dropdown-content">
                     <a href="/map/2021">2021</a>
-                    <a href="/2000">2000</a>
-                    <a href="#">Link 3</a>
+                    <a href="/map/2020">2020</a>
+                    <a href="/map/2019">2019</a>
+                    <a href="/map/2018">2018</a>
+                    <a href="/map/2017">2017</a>
                 </div>
             </div>
 
-            <a href="/charts">Charts</a>
+            <a href="/images">Images</a>
+            <a href="/chart">Injuries</a>
         </div>
 
-        <div id={{ year }}></div>
+        <table>
+            <tr>
+                <td>
+                    <img src="/static/images/aviation.png" alt="" id="description-image" width="800" height="500">
+                </td>
+                <td style="vertical-align:center">
+                </td>
+            </tr>
 
-        <div style="font-size:20px;">
-            <div id='map'></div>
-        </div>
+        </table>    
+
+        
+        
 
         <!-- Leaflet JS -->
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -48,8 +59,8 @@
         <!-- D3 JavaScript -->
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <!-- API key -->
-        <script type="text/javascript" src="/static/js/config.js"></script>
-        <script type="text/javascript" src="/static/js/charts.js"></script>
+        
+        
     </body>
 
 </html>

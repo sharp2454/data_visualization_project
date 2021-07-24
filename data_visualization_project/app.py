@@ -34,9 +34,9 @@ def welcome():
     return render_template("welcomepage.html") ##landing page
 
 
-@app.route("/charts")
-def charts():
-    return render_template("charts.html") ##kiara chart
+@app.route("/chart")
+def chart():
+    return render_template("chart.html") ##kiara chart
 
 
 @app.route("/report")

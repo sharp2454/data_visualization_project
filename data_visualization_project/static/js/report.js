@@ -86,7 +86,7 @@ function buildMap(selection) {
 
         marker = L.marker(location).addTo(myMap);
 
-        marker.bindPopup("<h2>" + sample[0].city + "<h2><hr><h3>Fatalities: + " + sample[0].total_fatalities + "</h3>").addTo(myMap);
+        marker.bindPopup("<h2>" + sample[0].city + "<h2><hr><h3>Fatalities: + " + sample[0].total_fatal_injuries + "</h3>").addTo(myMap);
 
         marker.on('mouseover', function (e) {
             this.openPopup();
