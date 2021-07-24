@@ -160,12 +160,12 @@ d3.json("/api/report").then((accidentData) => {
       }
 
 
-      //PIE CHART
+      //CHARTS
 
       var data = [{
-        values: [Airplane.length, Glider.length, Balloon.length, Gyroplane.length, Helicopter.length, Powered_Parachute.length, UltraLight.length, Weight_Shift.length],
-        labels: ['Airplane', 'Glider', 'Balloon', 'Gyroplane', 'Helicopter', 'Powered Parachute', 'UltraLight', 'Weight Shift'],
-        type: 'pie'
+        y: [Airplane.length, Glider.length, Balloon.length, Gyroplane.length, Helicopter.length, Powered_Parachute.length, UltraLight.length, Weight_Shift.length],
+        x: ['Airplane', 'Glider', 'Balloon', 'Gyroplane', 'Helicopter', 'Powered Parachute', 'UltraLight', 'Weight Shift'],
+        type: 'bar'
       }];
       
       var layout = {
